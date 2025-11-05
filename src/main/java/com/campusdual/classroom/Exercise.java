@@ -2,6 +2,9 @@ package com.campusdual.classroom;
 
 import com.campusdual.Utils;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Exercise {
 
     public static void main(String[] args) {
@@ -9,6 +12,10 @@ public class Exercise {
     }
 
     public static String generateStringToSave(String string) {
+        if (string == null) {
+            return generateUserInputToSave();
+        }
+        return string;
 
     }
 
@@ -23,6 +30,11 @@ public class Exercise {
     }
 
     public static void printToFile(String string) {
+        try (FileWriter fw = new FileWriter("src/main/resources/data.txt")) {
+            fw.write(string);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
